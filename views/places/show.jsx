@@ -26,8 +26,6 @@ function show (data) {
         {stars} stars
       </h3>
     )
-  }
-  if (data.place.comments.length) {
     comments = data.place.comments.map(c => {
       return (
         <div className="border">
@@ -48,12 +46,13 @@ function show (data) {
           <div className="col-sm-6">
             <img src={data.place.pic} alt={data.place.name} />
             <h3>
-              Located in {data.place.city}, 
-              {data.place.state}
+              Located in {data.place.city}, {data.place.state}
             </h3>
           </div>
-          </div>
           <div className="col-sm-6">
+            <h1> 
+              {data.place.name}
+            </h1>
             <h2>
               Rating
             </h2>
@@ -74,8 +73,11 @@ function show (data) {
 
             <form method="POST" action={`/places/${data.place.id}?_method=DELETE`}> 
                 <button type="submit" className="btn btn-danger">Delete</button>
-            </form>                 
+            </form>
+
+          </div>
         </div>
+        
         <h2>Comments</h2>    
             {comments}
             <form method="POST" action={`${data.place.id}/comment`}>
